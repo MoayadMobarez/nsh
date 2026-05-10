@@ -4,6 +4,7 @@
 #include <vector>
 
 class Builtins {
- public:
-  static bool handle(const std::vector<std::string>& tokens);
+public:
+    static bool handle(const std::vector<std::string>& tokens);
+    static void addHistory(const std::string& input);
 };

@@ -1,19 +1,24 @@
 #include <iostream>
 
+#include "builtins.hpp"
 #include "executer.hpp"
 #include "parser.hpp"
 
 int main() {
-  while (true) {
-    std::cout << "nsh> ";
-    std::string input;
-    std::getline(std::cin, input);
+    while (true) {
+        std::cout << "nsh> ";
 
-    if (input.empty()) {
-      continue;
+        std::string input;
+        std::getline(std::cin, input);
+
+        if (input.empty()) {
+            continue;
+        }
+
+        Builtins::addHistory(input);
+
+        std::vector<std::string> tokens = Parser::parseInput(input);
+
+        Executer::execute(tokens);
     }
-
-    std::vector<std::string> tokens = Parser::parseInput(input);
-    Executer::execute(tokens);
-  }
 }
